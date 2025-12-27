@@ -27,6 +27,6 @@ This script attaches a Network Interface (ENI) to an EC2 instance. It retrieves 
 |------|--------|---------|-------|
 | <!-- Add Azure scripts here --> |  |  |  |
 
-### Detailed Descriptions
+### Detailed Descriptions 
 
 <!-- Add detailed descriptions for Azure scripts here -->
