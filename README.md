@@ -61,8 +61,20 @@ This script creates a new EBS volume from an existing snapshot. It retrieves the
 | Icon | Script | Summary | Usage |
 |------|--------|---------|-------|
 | 🔑 | **[Create SSH Key Pair](azure-scripts/1-create-ssh-keys.sh)** | Creates an RSA SSH key pair in Azure using a specified resource group and verifies creation. | `./azure-scripts/1-create-ssh-keys.sh <KEY_NAME> <LOCATION> <RG_NAME>` |
+| 💻 | **[Create Virtual Machine](azure-scripts/2-create-vm.sh)** | Creates an Azure VM with specified image, size, and storage, opens SSH port, and verifies status. | `./azure-scripts/2-create-vm.sh <VM_NAME> <LOCATION> <IMAGE> <SIZE> <STORAGE_TYPE> <OS_DISK_SIZE>` |
+| 🌐 | **[Create Virtual Network](azure-scripts/3-create-vnet.sh)** | Creates an Azure Virtual Network with a specified address prefix and verifies creation. | `./azure-scripts/3-create-vnet.sh <VNET_NAME> <LOCATION> <ADDRESS_PREFIX>` |
+| 💰 | **[Create Budget via REST API](azure-scripts/4-create-budgets-restapi.sh)** | Creates an Azure budget with email notifications using the REST API and verifies the budget. | `./azure-scripts/4-create-budgets-restapi.sh <BUDGET_NAME> <AMOUNT> <EMAIL_ADDRESS>` |
 
 ### Detailed Descriptions
 
 #### 🔑 [Create SSH Key Pair](azure-scripts/1-create-ssh-keys.sh)
 This script creates an RSA SSH key pair in Azure using the specified resource group. It creates the SSH key pair with the given name in the provided location and verifies the creation by checking the resource ID.
+
+#### 💻 [Create Virtual Machine](azure-scripts/2-create-vm.sh)
+This script creates an Azure Virtual Machine with the specified parameters. It detects the first available resource group, creates the VM with the given image, size, storage type, and OS disk size, generates SSH keys, opens port 22 for SSH, and verifies that the VM is running by checking its status and retrieving the public IP address.
+
+#### 🌐 [Create Virtual Network](azure-scripts/3-create-vnet.sh)
+This script creates an Azure Virtual Network with the specified name, location, and address prefix. It detects the first available resource group, creates the VNet, and verifies the creation by checking the resource ID.
+
+#### 💰 [Create Budget via REST API](azure-scripts/4-create-budgets-restapi.sh)
+This script creates an Azure budget using the REST API to bypass CLI limitations. It sets up a monthly budget with the specified amount, start and end dates (current month to 2 years ahead), and email notifications at 80% threshold. It then verifies the budget creation by displaying its details.
