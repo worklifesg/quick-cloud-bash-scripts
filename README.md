@@ -60,8 +60,9 @@ This script creates a new EBS volume from an existing snapshot. It retrieves the
 
 | Icon | Script | Summary | Usage |
 |------|--------|---------|-------|
-| <!-- Add Azure scripts here --> |  |  |  |
+| 🔑 | **[Create SSH Key Pair](azure-scripts/1-create-ssh-keys.sh)** | Creates an RSA SSH key pair in Azure using a specified resource group and verifies creation. | `./azure-scripts/1-create-ssh-keys.sh <KEY_NAME> <LOCATION> <RG_NAME>` |
 
-### Detailed Descriptions 
+### Detailed Descriptions
 
-<!-- Add detailed descriptions for Azure scripts here -->
+#### 🔑 [Create SSH Key Pair](azure-scripts/1-create-ssh-keys.sh)
+This script creates an RSA SSH key pair in Azure using the specified resource group. It creates the SSH key pair with the given name in the provided location and verifies the creation by checking the resource ID.
