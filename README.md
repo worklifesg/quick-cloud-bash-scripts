@@ -28,6 +28,7 @@ This repository contains bash scripts for quick AWS and Azure operations.
 | 🗑️ | **[Terminate EC2 Instance](aws-scripts/5-terminate-ec2.sh)** | Terminates an EC2 instance by retrieving its ID via tags and waits for the termination to complete. | `./aws-scripts/5-terminate-ec2.sh <REGION> <INSTANCE_NAME>` |
 | 📸 | **[Create Volume Snapshot](aws-scripts/6-create-volume-snapshot.sh)** | Creates a snapshot of an EBS volume with a given description and waits for completion. | `./aws-scripts/6-create-volume-snapshot.sh <REGION> <VOLUME_NAME> <SNAPSHOT_NAME> <DESCRIPTION>` |
 | 🔄 | **[Create Volume from Snapshot](aws-scripts/7-create-volume-from-snapshot.sh)** | Creates a new EBS volume from an existing snapshot in a specified availability zone and waits for availability. | `./aws-scripts/7-create-volume-from-snapshot.sh <REGION> <SNAPSHOT_NAME> <NEW_VOLUME_NAME> <AVAILABILITY_ZONE>` |
+| 🔐 | **[Create IAM Policy for EC2 Read-Only](aws-scripts/8-create-iamrole-ec2.sh)** | Creates an IAM policy with read-only access to EC2 resources and verifies the policy creation. | `./aws-scripts/8-create-iamrole-ec2.sh <POLICY_NAME>` |
 
 ### Detailed Descriptions
 
@@ -52,6 +53,9 @@ This script creates a snapshot of an EBS volume. It retrieves the volume ID by f
 #### 🔄 [Create Volume from Snapshot](aws-scripts/7-create-volume-from-snapshot.sh)
 This script creates a new EBS volume from an existing snapshot. It retrieves the snapshot ID by filtering snapshots based on the provided snapshot name tag. It then creates the volume in the specified availability zone, tags it with the new volume name, and waits for the volume to reach the 'available' state before confirming success.
 
+#### 🔐 [Create IAM Policy for EC2 Read-Only](aws-scripts/8-create-iamrole-ec2.sh)
+This script creates an IAM policy with read-only permissions for various EC2 resources. It generates a JSON policy document allowing actions like describing instances, images, snapshots, and more, creates the policy in AWS, cleans up the temporary file, and verifies the policy creation by listing it.
+
 ---
 
 ## <img src="https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg" width="25" height="15" style="vertical-align: middle;"> <span style="color: #0078D4;">Azure Scripts</span>
@@ -64,6 +68,8 @@ This script creates a new EBS volume from an existing snapshot. It retrieves the
 | 💻 | **[Create Virtual Machine](azure-scripts/2-create-vm.sh)** | Creates an Azure VM with specified image, size, and storage, opens SSH port, and verifies status. | `./azure-scripts/2-create-vm.sh <VM_NAME> <LOCATION> <IMAGE> <SIZE> <STORAGE_TYPE> <OS_DISK_SIZE>` |
 | 🌐 | **[Create Virtual Network](azure-scripts/3-create-vnet.sh)** | Creates an Azure Virtual Network with a specified address prefix and verifies creation. | `./azure-scripts/3-create-vnet.sh <VNET_NAME> <LOCATION> <ADDRESS_PREFIX>` |
 | 💰 | **[Create Budget via REST API](azure-scripts/4-create-budgets-restapi.sh)** | Creates an Azure budget with email notifications using the REST API and verifies the budget. | `./azure-scripts/4-create-budgets-restapi.sh <BUDGET_NAME> <AMOUNT> <EMAIL_ADDRESS>` |
+| 🌐 | **[Create Virtual Network IPv4](azure-scripts/5-create-vn-ipv4.sh)** | Creates an Azure Virtual Network with an IPv4 address prefix and displays the details. | `./azure-scripts/5-create-vn-ipv4.sh <VNET_NAME> <LOCATION> <ADDRESS_PREFIX>` |
+| 🏗️ | **[Create Subnet in Virtual Network](azure-scripts/6-create-subnets-network.sh)** | Creates an Azure Virtual Network with a subnet and verifies the network setup. | `./azure-scripts/6-create-subnets-network.sh <VNET_NAME> <SUBNET_NAME> <LOCATION> <VNET_PREFIX> <SUBNET_PREFIX>` |
 
 ### Detailed Descriptions
 
@@ -78,3 +84,9 @@ This script creates an Azure Virtual Network with the specified name, location, 
 
 #### 💰 [Create Budget via REST API](azure-scripts/4-create-budgets-restapi.sh)
 This script creates an Azure budget using the REST API to bypass CLI limitations. It sets up a monthly budget with the specified amount, start and end dates (current month to 2 years ahead), and email notifications at 80% threshold. It then verifies the budget creation by displaying its details.
+
+#### 🌐 [Create Virtual Network IPv4](azure-scripts/5-create-vn-ipv4.sh)
+This script creates an Azure Virtual Network with the specified name, location, and IPv4 address prefix. It detects the first available resource group, creates the VNet, and displays the VNet details including name, address space, and location.
+
+#### 🏗️ [Create Subnet in Virtual Network](azure-scripts/6-create-subnets-network.sh)
+This script creates an Azure Virtual Network along with a subnet in a single operation. It detects the first available resource group, sets up the VNet with the specified address prefix and creates the subnet with its own prefix, then displays the VNet and subnet details for verification.
