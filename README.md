@@ -31,6 +31,8 @@ This repository contains bash scripts for quick AWS and Azure operations.
 | 🔐 | **[Create IAM Policy for EC2 Read-Only](aws-scripts/8-create-iamrole-ec2.sh)** | Creates an IAM policy with read-only access to EC2 resources and verifies the policy creation. | Beginner | `./aws-scripts/8-create-iamrole-ec2.sh <POLICY_NAME>` |
 | 🔑 | **[Create IAM Role and Attach Policy](aws-scripts/9-iamrole-ec2-policy.sh)** | Creates an IAM role for EC2 with a trust policy and attaches a specified IAM policy. | Beginner | `./aws-scripts/9-iamrole-ec2-policy.sh <ROLE_NAME> <POLICY_NAME>` |
 | 🚀 | **[Launch EC2 Instance with Elastic IP](aws-scripts/10-create-ec2-eip-application.sh)** | Launches an EC2 instance with the latest Ubuntu AMI, allocates and associates an EIP, and provides the public IP. | Intermediate | `./aws-scripts/10-create-ec2-eip-application.sh <INSTANCE_NAME> <EIP_NAME> <INSTANCE_TYPE>` |
+| ⚖️ | **[Create and Attach ALB to EC2](aws-scripts/11-create-attach-alb-to-ec2.sh)** | Creates an Application Load Balancer, Target Group, and Security Group, then attaches an existing EC2 instance. | Advanced | `./aws-scripts/11-create-attach-alb-to-ec2.sh <ALB_NAME> <TG_NAME> <SG_NAME> <INSTANCE_NAME>` |
+| ⚖️ | **[Create and Attach ALB to EC2](aws-scripts/11-create-attach-alb-to-ec2.sh)** | Creates an Application Load Balancer, Target Group, and Security Group, then attaches an existing EC2 instance. | Advanced | `./aws-scripts/11-create-attach-alb-to-ec2.sh <ALB_NAME> <TG_NAME> <SG_NAME> <INSTANCE_NAME>` |
 
 ### Detailed Descriptions
 
@@ -63,6 +65,24 @@ This script creates an IAM role that can be assumed by EC2 instances. It generat
 
 #### 🚀 [Launch EC2 Instance with Elastic IP](aws-scripts/10-create-ec2-eip-application.sh)
 This script launches a new EC2 instance using the latest Ubuntu 22.04 AMI, waits for it to be running, allocates a new Elastic IP, tags it, associates it with the instance, and outputs the static public IP for access.
+
+#### ⚖️ [Create and Attach ALB to EC2](aws-scripts/11-create-attach-alb-to-ec2.sh)
+This script automates the setup of an Application Load Balancer (ALB) and attaches it to an existing EC2 instance. It performs the following steps:
+1. Retrieves instance details (ID, VPC, existing Security Group).
+2. Creates a new Security Group for the ALB allowing HTTP traffic.
+3. Updates the EC2 instance's Security Group to allow traffic from the ALB.
+4. Creates a Target Group and registers the EC2 instance.
+5. Creates the ALB and a Listener to forward traffic to the Target Group.
+6. Waits for the ALB to become active and outputs the DNS name.
+
+#### ⚖️ [Create and Attach ALB to EC2](aws-scripts/11-create-attach-alb-to-ec2.sh)
+This script automates the setup of an Application Load Balancer (ALB) and attaches it to an existing EC2 instance. It performs the following steps:
+1. Retrieves instance details (ID, VPC, existing Security Group).
+2. Creates a new Security Group for the ALB allowing HTTP traffic.
+3. Updates the EC2 instance's Security Group to allow traffic from the ALB.
+4. Creates a Target Group and registers the EC2 instance.
+5. Creates the ALB and a Listener to forward traffic to the Target Group.
+6. Waits for the ALB to become active and outputs the DNS name.
 
 ---
 
